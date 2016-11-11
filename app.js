@@ -1,7 +1,14 @@
   
   $(function() {
-    var query = 'card'
-    var timeLimit = 60000 //milliseconds
+    $('#submit').on('click', function() {
+      event.preventDefault()
+      let query = $('#search').val()
+      search(query)
+    })
+  })
+
+  function search(query) {
+    var timeLimit = 60000 // milliseconds
     var maxPrice = 1
 
     var deadline = new Date(Date.now() + timeLimit).toJSON()
@@ -22,11 +29,10 @@
     }
 
     $.get(`https://svcs.ebay.com/services/search/FindingService/v1`, queryData, null, 'jsonp').done(function(data) {
-      var auctions = data.findItemsAdvancedResponse[0].searchResult[0].item
+      let auctions = data.findItemsAdvancedResponse[0].searchResult[0].item
       auctions.forEach(auction => {
-        $('body').append(`<a href="${auction.viewItemURL[0]}"></a>`)
+        $('body').append(`<p><img src="${auction.galleryURL[0]}"><a href="${auction.viewItemURL[0]}">${auction.title[0]}</a></p>`)
       })
 
     })
-
-  })
+  }
