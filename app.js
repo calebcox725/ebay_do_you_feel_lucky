@@ -20,17 +20,15 @@
 
             // TO DO: replace append argument with Handlebars HTML rendering
             $('#results').append(
-              `<div class="thumbnail col-lg-4">
-                <a href="${linkURL}" target="_blank">
-                  <img src="${imgURL}" style="width: 300px; height: 300px;">
-                </a>
-                <div class="caption">
-                  <a href="${linkURL}" target="_blank">
+              `<a href="${linkURL}" target="_blank">
+                <div class="thumbnail col-sm-4">
+                    <img src="${imgURL}" style="max-width: 100%; min-height: 250px;">
+                  <div class="caption">
                     <p>${description}</p>
-                  </a>
                     <b>$${price}</b> from ${location}
+                  </div>
                 </div>
-              </div>`
+              </a>`
             )
           })
         } else {
