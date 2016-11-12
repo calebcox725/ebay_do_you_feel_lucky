@@ -1,15 +1,37 @@
-<html>
-<head>
-  <title>Random crap</title>
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<input type="text" id="search">
-<input type="submit" id="submit">
+    <title>eBay Impulse Buy Generator</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="../adapters/ebay_adapter.js"></script>
-<script src="../app.js"></script>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
 
-</body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>I'll Buy That for a Dollar!</h1>
+
+        <div class="lead">
+          <p>eBay Impulse Buy Generator</p>
+
+          <form>
+            <input id="search" type="text" placeholder="Search eBay">
+            <input id="submit" type="submit" value="Search" class="btn btn-info">
+          </form>
+        </div>
+
+      </div>
+      <div id="results" class="row"></div>
+
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../adapters/ebay_adapter.js"></script>
+    <script src="../app.js"></script>
+  </body>
 </html>

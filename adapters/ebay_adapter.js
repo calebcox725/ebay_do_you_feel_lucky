@@ -2,9 +2,11 @@ class EbayAdapter {
   static search(query) {
     return new Promise(function(resolve) {
       var timeLimit = 60000 // milliseconds
-      var maxPrice = 1
+      var maxPrice = 1.00
 
       var deadline = new Date(Date.now() + timeLimit).toJSON()
+
+      var apiURL = `https://svcs.ebay.com/services/search/FindingService/v1`
       var queryData = {
         'OPERATION-NAME': 'findItemsAdvanced',
         'SERVICE-VERSION': '1.0.0',
@@ -12,7 +14,8 @@ class EbayAdapter {
         'RESPONSE-DATA-FORMAT': 'JSON',
         'REST-PAYLOAD': 'true',
         'keywords': query,
-        'paginationInput.entriesPerPage': '10',
+        'paginationInput.entriesPerPage': '3',
+        'sortOrder': 'BestMatch',
         'itemFilter(0).name': 'EndTimeTo',  
         'itemFilter(0).value': deadline,
         'itemFilter(1).name': 'ListingType',
@@ -21,9 +24,18 @@ class EbayAdapter {
         'itemFilter(2).value': maxPrice
       }
 
-      $.get(`https://svcs.ebay.com/services/search/FindingService/v1`, queryData, null, 'jsonp')
+      $.get(apiURL, queryData, null, 'jsonp')
         .done(function(data) {
-          resolve(data.findItemsAdvancedResponse[0].searchResult[0].item)
+          let searchResults = data.findItemsAdvancedResponse[0].searchResult[0]
+          let count = parseInt(searchResults['@count'])
+
+          if (count > 0) { 
+            var results = searchResults.item
+          } else {
+            var results = null
+          }
+
+          resolve(results)
         })
     })
   }
