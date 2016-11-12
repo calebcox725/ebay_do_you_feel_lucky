@@ -16,12 +16,13 @@ class EbayAdapter {
         'keywords': query,
         'paginationInput.entriesPerPage': '3',
         'sortOrder': 'BestMatch',
-        'itemFilter(0).name': 'EndTimeTo',  
+        'itemFilter(0).name': 'EndTimeTo',
         'itemFilter(0).value': deadline,
         'itemFilter(1).name': 'ListingType',
         'itemFilter(1).value': 'Auction',
         'itemFilter(2).name': 'MaxPrice',
-        'itemFilter(2).value': maxPrice
+        'itemFilter(2).value': maxPrice,
+        'outputSelector': 'GalleryInfo'
       }
 
       $.get(apiURL, queryData, null, 'jsonp')
@@ -29,7 +30,7 @@ class EbayAdapter {
           let searchResults = data.findItemsAdvancedResponse[0].searchResult[0]
           let count = parseInt(searchResults['@count'])
 
-          if (count > 0) { 
+          if (count > 0) {
             var results = searchResults.item
           } else {
             var results = null

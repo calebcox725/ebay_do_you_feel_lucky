@@ -1,2 +1,2 @@
 let store = [];
-store.data = {}
+store.data = {list: []};

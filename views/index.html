@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>eBay Impulse Buy Generator</title>
-
     <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   </head>
   <body>
@@ -23,15 +22,19 @@
             <input id="submit" type="submit" value="Search" class="btn btn-info">
           </form>
         </div>
-
+        <button id="history">Show History</button>
       </div>
+
       <div id="results" class="row"></div>
 
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../store.js"></script>
+    <script src="../models/item.js"></script>
     <script src="../adapters/ebay_adapter.js"></script>
+    <script src="../controllers/items.controller.js"></script>
     <script src="../app.js"></script>
   </body>
 </html>
