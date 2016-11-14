@@ -11,6 +11,7 @@ const Item = (function(){
       this.time = time;
       this.price = price;
       this.place = place;
+      this.seller_id = this.id
       store.data.list = [...store.data.list, this];
     }};
 
