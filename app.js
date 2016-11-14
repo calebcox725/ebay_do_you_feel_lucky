@@ -1,24 +1,41 @@
+let store = {items: [], sellers: []};
+
 $(function() {
   $('#submit').on('click', function() {
     event.preventDefault()
     search()
   })
-})
 
-$('#history').on('click', function() {
-  event.preventDefault()
+  $('#history').on('click', function() {
+    event.preventDefault()
 
-  let history = store.data.list
-  $('#results').empty()
+    let history = store.items
+    $('#results').empty()
 
-  history.forEach(search => {
-    $('#results').append(`<p><img src="${search.imgURL}"><a href="${search.linkURL}">${search.description}</a></p>`)
+    history.forEach(item => {
+      const src = $('#auction-template').html()
+      const template = Handlebars.compile(src)
+      const auctionThumbnail = template(item)
+      $('#results').append(auctionThumbnail) 
+    })
   })
 })
 
-$('#results').on('click', '.seller', function() {
-  event.preventDefault()
-  let id = this.id
+function search() {
+  let query = $('#search').val()
+  let search = EbayAdapter.search(query)
+  search.then(function(auctions) {
+    $('#results').empty()
+    if (auctions) {
+      var items = auctions.map(auction => {
+        return createItem(auction)
+      })
 
-  displaySeller(id)
-})
+      items.forEach(item => {
+        displayItem(item.id)  
+      })
+    } else {
+      $('#results').append('<hr><h2>No matches found!</h2>')
+    }
+  })
+}
