@@ -22,8 +22,8 @@ class EbayAdapter {
         'itemFilter(1).value': 'Auction',
         'itemFilter(2).name': 'MaxPrice',
         'itemFilter(2).value': maxPrice,
-        'outputSelector': 'PictureURLLarge',
-        'outputSelector': 'SellerInfo'
+        'outputSelector(0)': 'PictureURLLarge',
+        'outputSelector(1)': 'SellerInfo',
       }
 
       $.get(apiURL, queryData, null, 'jsonp')
