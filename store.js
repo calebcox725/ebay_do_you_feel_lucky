@@ -1,2 +1,1 @@
-let store = [];
-store.data = {list: []};
+let store = {items: [], sellers: []};

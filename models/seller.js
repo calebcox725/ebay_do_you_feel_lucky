@@ -3,12 +3,12 @@ const Seller = (function(){
   let id = 0;
 
   return class {
-    constructor(username, percent, topRated){
+    constructor(username, positiveFeedbackPercent, topRatedSeller){
       this.id = id++;
       this.username = username;
-      this.positiveFeedbackPercent = percent;
-      this.topRatedSeller = topRated;
-      store.data.list = [...store.data.list, this];
+      this.positiveFeedbackPercent = positiveFeedbackPercent;
+      this.topRatedSeller = topRatedSeller;
+      store.sellers = [...store.sellers, this];
     }};
 
 }());
