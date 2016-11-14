@@ -41,4 +41,18 @@ class EbayAdapter {
         })
     })
   }
+
+  static getCategories() {
+    return new Promise(function(resolve) {
+      var apiURL = `https://svcs.ebay.com/services/search/FindingService/v1`
+      var queryData = {
+        'RequesterCredentials.eBayAuthToken': 'CalebCox-Test-PRD-745f6444c-e2e81b28',
+      }
+
+      $.get(apiURL, queryData, null, 'jsonp')
+        .done(function(data) {
+          console.log(data)
+        })
+    })
+  }
 }
