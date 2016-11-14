@@ -23,7 +23,7 @@ function displayItem(itemId){
 
   var timeId = $(`#time${item.id}`)
   startTimer(item.time, timeId)
-  displaySeller(item.seller.id) 
+  displaySeller(item.seller.id)
 }
 
 function startTimer(duration, timeId) {
@@ -37,18 +37,23 @@ function startTimer(duration, timeId) {
       seconds = seconds < 10 ? "0" + seconds : seconds
 
       $(timeId).text(minutes + ":" + seconds + " remaining!").css('font-size', '150%')
+      let halfseconds = seconds*2;
 
-      if (seconds <= 10) {
-        $(timeId).css('color', 'red')
+      if (seconds <= 10 && seconds%2 ==0) {
+        $(timeId).parent().parent().css('background', 'rgb(255, 0, 51)')
+        $(timeId).css('color', 'black')
+      }
+
+      if (seconds <= 10 && seconds%2 ==1) {
+        $(timeId).parent().parent().css('background', 'white')
+        $(timeId).css('color', 'rgb(255, 0, 51)')
       }
 
       if(seconds <= 0){
         clearInterval(interval)
-        $(timeId).parent().parent().css('background', 'red')
+        $(timeId).parent().parent().css('background', 'rgb(255, 0, 51)')
         $(timeId).text("TOO LATE!").css('color', 'black')
       }
   }
   var interval = setInterval(timer, 500)
 }
-
-
