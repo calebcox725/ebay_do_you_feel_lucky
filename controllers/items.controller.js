@@ -10,7 +10,7 @@ function search() {
         $('#results').append(
           `<a href="${item.linkURL}" target="_blank">
             <div class="thumbnail col-sm-4">
-              <img src="${item.imgURL}" style="max-width: 100%; min-height: 250px;">
+              <img src="${item.imgURL}" style="max-width: 100%;">
               <div class="caption">
                 <h5>${item.description}</h5>
                 <b>$${item.price}</b> from ${item.place}
@@ -40,10 +40,10 @@ function search() {
           minutes = minutes < 10 ? "0" + minutes : minutes
           seconds = seconds < 10 ? "0" + seconds : seconds
 
-          $(timeId).text("(" + minutes + ":" + seconds + ")").css({'font-size': '150%'})
+          $(timeId).text("(" + minutes + ":" + seconds + ")").css('font-size', '150%')
 
           if (seconds <= 10) {
-            $(timeId).css({ 'color': 'red'  })
+            $(timeId).css('color', 'red')
           }
 
           if(seconds <= 0){
@@ -56,7 +56,7 @@ function search() {
 
   function createItem(auction){
     var linkURL = auction.viewItemURL[0]
-    var imgURL = auction.galleryURL[0]
+    var imgURL = auction.pictureURLLarge[0]
     var description = auction.title[0]
     var time = (new Date(auction.listingInfo[0].endTime[0]) - new Date()) / 1000
     var price = auction.sellingStatus[0].currentPrice[0]['__value__']
