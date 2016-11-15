@@ -1,5 +1,5 @@
 class EbayAdapter {
-  static search(query) {
+  static search(categoryId) {
     return new Promise(function(resolve) {
       var timeLimit = 60000 // milliseconds
       var maxPrice = 1.00
@@ -13,7 +13,7 @@ class EbayAdapter {
         'SECURITY-APPNAME': 'CalebCox-Test-PRD-745f6444c-e2e81b28',
         'RESPONSE-DATA-FORMAT': 'JSON',
         'REST-PAYLOAD': 'true',
-        'keywords': query,
+        'categoryId': categoryId,
         'paginationInput.entriesPerPage': '3',
         'sortOrder': 'BestMatch',
         'itemFilter(0).name': 'EndTimeTo',
@@ -43,16 +43,27 @@ class EbayAdapter {
   }
 
   static getCategories() {
-    return new Promise(function(resolve) {
-      var apiURL = `https://svcs.ebay.com/services/search/FindingService/v1`
-      var queryData = {
-        'RequesterCredentials.eBayAuthToken': 'CalebCox-Test-PRD-745f6444c-e2e81b28',
-      }
+    var apiURL = `http://open.api.ebay.com/shopping`
+    var queryData = {
+      'version': '967',
+      'appid': 'CalebCox-Test-PRD-745f6444c-e2e81b28',
+      'callname': 'GetCategoryInfo',
+      'siteid': '0',
+      'CategoryId': '-1',
+      'IncludeSelector': 'ChildCategories',
+      'responseencoding': 'JSON',
+      'callbackname': 'EbayAdapter.populateCategories'
+    }
 
-      $.get(apiURL, queryData, null, 'jsonp')
-        .done(function(data) {
-          console.log(data)
-        })
+    $.get(apiURL, queryData, null, 'jsonp')
+  }
+
+  static populateCategories(data) {
+    data.CategoryArray.Category.forEach(category => {
+      if (category.CategoryID !== '-1') {
+        new Category(category.CategoryName, category.CategoryID)
+      }
     })
   }
+
 }

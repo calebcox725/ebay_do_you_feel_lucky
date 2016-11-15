@@ -1,4 +1,5 @@
-let store = {items: [], sellers: []};
+let store = {categories: [], items: [], sellers: []}
+EbayAdapter.getCategories()
 
 $(function() {
   $('#submit').on('click', function() {
@@ -22,8 +23,8 @@ $(function() {
 })
 
 function search() {
-  let query = $('#search').val()
-  let search = EbayAdapter.search(query)
+  let categoryId = $('#category').val()
+  let search = EbayAdapter.search(categoryId)
   search.then(function(auctions) {
     $('#results').empty()
     if (auctions) {

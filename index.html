@@ -17,7 +17,7 @@
           <p>eBay Impulse Buy Generator</p>
 
           <form>
-            <input id="search" type="text" placeholder="Search eBay">
+            <select id="category"></select>
             <input id="submit" type="submit" value="Search" class="btn btn-primary">
             <button id="history" class="btn btn-info">Show History</button>
           </form>
@@ -31,6 +31,7 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="handlebars.js"></script>
     <script src="adapters/ebay_adapter.js"></script>
+    <script src="models/category.js"></script>
     <script src="models/item.js"></script>
     <script src="models/seller.js"></script>
     <script src="controllers/sellers_controller.js"></script>

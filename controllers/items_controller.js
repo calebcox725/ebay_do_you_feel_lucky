@@ -29,25 +29,26 @@ function displayItem(itemId){
 function startTimer(duration, timeId) {
   var start = Date.now(), diff, hours, minutes, seconds
   function timer() {
-      diff = duration - (((Date.now() - start) / 1000) | 0)
+    diff = duration - (((Date.now() - start) / 1000) | 0)
 
-      minutes = ((diff % 3600) / 60) | 0
-      seconds = (diff % 60) | 0
-      minutes = minutes < 10 ? "0" + minutes : minutes
-      seconds = seconds < 10 ? "0" + seconds : seconds
+    minutes = ((diff % 3600) / 60) | 0
+    seconds = (diff % 60) | 0
+    minutes = minutes < 10 ? "0" + minutes : minutes
+    seconds = seconds < 10 ? "0" + seconds : seconds
 
-      $(timeId).text(minutes + ":" + seconds + " remaining!").css('font-size', '150%')
+    $(timeId).text(minutes + ":" + seconds + " remaining!").css('font-size', '150%')
 
-      if (seconds <= 10) {
-        $(timeId).css('color', 'red')
-      }
+    if (seconds <= 10) {
+      $(timeId).css('color', 'red')
+    }
 
-      if(seconds <= 0){
-        clearInterval(interval)
-        $(timeId).parent().parent().css('background', 'red')
-        $(timeId).text("TOO LATE!").css('color', 'black')
-      }
+    if(seconds <= 0){
+      clearInterval(interval)
+      $(timeId).parent().parent().css('background', 'red')
+      $(timeId).text("TOO LATE!").css('color', 'black')
+    }
   }
+  
   var interval = setInterval(timer, 500)
 }
 
