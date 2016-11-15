@@ -40,18 +40,18 @@ function startTimer(duration, timeId) {
     let halfseconds = seconds*2;
 
     if (seconds <= 10 && seconds%2 ==0) {
-      $(timeId).parent().parent().css('background', 'rgb(255, 0, 51)')
+      $(timeId).parent().parent().css('background', '#AB3428')
       $(timeId).css('color', 'black')
     }
 
     if (seconds <= 10 && seconds%2 ==1) {
       $(timeId).parent().parent().css('background', 'white')
-      $(timeId).css('color', 'rgb(255, 0, 51)')
+      $(timeId).css('color', '#AB3428')
     }
 
     if(seconds <= 0){
       clearInterval(interval)
-      $(timeId).parent().parent().css('background', 'rgb(255, 0, 51)')
+      $(timeId).parent().parent().css('background', '#AB3428')
       $(timeId).text("TOO LATE!").css('color', 'black')
     }
   }

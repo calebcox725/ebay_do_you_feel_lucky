@@ -17,7 +17,7 @@ $(function() {
       const src = $('#auction-template').html()
       const template = Handlebars.compile(src)
       const auctionThumbnail = template(item)
-      $('#results').append(auctionThumbnail) 
+      $('#results').append(auctionThumbnail)
     })
   })
 })
